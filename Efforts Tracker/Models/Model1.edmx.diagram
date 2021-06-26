@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="942c516a5b15451babde31ff0675f5e7" Name="Diagram1">
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.UsersLogin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.TicketCategorisation" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.TicketCategorisationDetail" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.TicketsMaster" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.vw_TicketsDetails" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.AdhocRequest" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EffortsTrackingToolModel.Meeting" Width="1.5" PointX="0.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

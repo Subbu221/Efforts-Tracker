@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EffortsTrackingToolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdhocRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RequestType" Type="int" />
+          <Property Name="Requestedby" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="WokedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalTime" Type="nvarchar" MaxLength="5" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Meetings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RequestType" Type="int" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeCNT" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TicketCategorisation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CateName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TicketCategorisationDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TicketsMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="TicketType" Type="int" />
+          <Property Name="TicketNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalHours" Type="nvarchar" MaxLength="5" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="RequestType" Type="int" />
+        </EntityType>
+        <EntityType Name="UsersLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" />
+          <Property Name="UserRole" Type="nvarchar" MaxLength="20" />
+          <Property Name="LandId" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EffortsTrackingTool.dbo.vw_TicketsDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_TicketsDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="TicketType" Type="int" />
+          <Property Name="TicketNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="TotalHours" Type="nvarchar" MaxLength="5" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="RequestType" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CateName" Type="nvarchar" MaxLength="30" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityContainer Name="EffortsTrackingToolModelStoreContainer">
+          <EntitySet Name="AdhocRequests" EntityType="Self.AdhocRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketCategorisation" EntityType="Self.TicketCategorisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketCategorisationDetails" EntityType="Self.TicketCategorisationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketsMaster" EntityType="Self.TicketsMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersLogin" EntityType="Self.UsersLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_TicketsDetails" EntityType="Self.vw_TicketsDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_TicketsDetails].[Id] AS [Id], 
+    [vw_TicketsDetails].[UserId] AS [UserId], 
+    [vw_TicketsDetails].[TicketType] AS [TicketType], 
+    [vw_TicketsDetails].[TicketNumber] AS [TicketNumber], 
+    [vw_TicketsDetails].[WorkedDate] AS [WorkedDate], 
+    [vw_TicketsDetails].[TotalHours] AS [TotalHours], 
+    [vw_TicketsDetails].[Remarks] AS [Remarks], 
+    [vw_TicketsDetails].[RequestType] AS [RequestType], 
+    [vw_TicketsDetails].[UserName] AS [UserName], 
+    [vw_TicketsDetails].[CateName] AS [CateName], 
+    [vw_TicketsDetails].[TypeName] AS [TypeName]
+    FROM [dbo].[vw_TicketsDetails] AS [vw_TicketsDetails]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EffortsTrackingToolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UsersLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UserRole" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LandId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="EffortsTrackingToolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UsersLogins" EntityType="Self.UsersLogin" />
+          <EntitySet Name="TicketCategorisations" EntityType="EffortsTrackingToolModel.TicketCategorisation" />
+          <EntitySet Name="TicketCategorisationDetails" EntityType="EffortsTrackingToolModel.TicketCategorisationDetail" />
+          <EntitySet Name="TicketsMasters" EntityType="EffortsTrackingToolModel.TicketsMaster" />
+          <EntitySet Name="vw_TicketsDetails" EntityType="EffortsTrackingToolModel.vw_TicketsDetails" />
+          <EntitySet Name="AdhocRequests" EntityType="EffortsTrackingToolModel.AdhocRequest" />
+          <EntitySet Name="Meetings" EntityType="EffortsTrackingToolModel.Meeting" />
+        </EntityContainer>
+        <EntityType Name="TicketCategorisation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CateName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TicketCategorisationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TicketsMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="TicketType" Type="Int32" />
+          <Property Name="TicketNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalHours" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RequestType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_TicketsDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="TicketType" Type="Int32" />
+          <Property Name="TicketNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalHours" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CateName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RequestType" Type="Int32" />
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AdhocRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RequestType" Type="Int32" />
+          <Property Name="Requestedby" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WokedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TotalTime" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RequestType" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCNT" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EffortsTrackingToolModelStoreContainer" CdmEntityContainer="EffortsTrackingToolEntities">
+          <EntitySetMapping Name="UsersLogins">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.UsersLogin">
+              <MappingFragment StoreEntitySet="UsersLogin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="LandId" ColumnName="LandId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketCategorisations">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.TicketCategorisation">
+              <MappingFragment StoreEntitySet="TicketCategorisation">
+                <ScalarProperty Name="CateName" ColumnName="CateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketCategorisationDetails">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.TicketCategorisationDetail">
+              <MappingFragment StoreEntitySet="TicketCategorisationDetails">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketsMasters">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.TicketsMaster">
+              <MappingFragment StoreEntitySet="TicketsMaster">
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
+                <ScalarProperty Name="WorkedDate" ColumnName="WorkedDate" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_TicketsDetails">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.vw_TicketsDetails">
+              <MappingFragment StoreEntitySet="vw_TicketsDetails">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="CateName" ColumnName="CateName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
+                <ScalarProperty Name="WorkedDate" ColumnName="WorkedDate" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdhocRequests">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.AdhocRequest">
+              <MappingFragment StoreEntitySet="AdhocRequests">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+                <ScalarProperty Name="WokedDate" ColumnName="WokedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Requestedby" ColumnName="Requestedby" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="EffortsTrackingToolModel.Meeting">
+              <MappingFragment StoreEntitySet="Meetings">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="EmployeeCNT" ColumnName="EmployeeCNT" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
